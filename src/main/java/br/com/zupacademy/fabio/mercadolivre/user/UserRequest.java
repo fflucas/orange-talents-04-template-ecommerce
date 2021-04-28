@@ -1,14 +1,14 @@
 package br.com.zupacademy.fabio.mercadolivre.user;
 
+import br.com.zupacademy.fabio.mercadolivre.shared.validator.IsUnique;
 import br.com.zupacademy.fabio.mercadolivre.user.validation.RawPassword;
-import org.springframework.util.Assert;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class UserRequest {
-    @NotBlank @Email
+    @NotBlank @Email @IsUnique(domainClass = User.class, fieldName = "username")
     private String username;
     @NotBlank @Size(min = 6)
     private String password;
