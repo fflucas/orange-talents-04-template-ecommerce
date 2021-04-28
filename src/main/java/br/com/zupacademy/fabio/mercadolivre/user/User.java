@@ -26,19 +26,18 @@ public class User {
     public User() {
     }
 
-    public User(String username, RawPassword password) {
-        String raw_password = password.toString();
-
+    public User(String username, RawPassword raw_password) {
         Assert.notNull(username, "Username must exists");
         Assert.notNull(raw_password, "Password must exists");
-        Assert.isTrue(raw_password.length()>=6, "Password must be at least 6 characters");
-
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         this.username = username;
-        this.password = encoder.encode(raw_password);
+        this.password = raw_password.encode();
 
-        Assert.isTrue(encoder.matches(raw_password, this.password), "Password must be encoded");
+        Assert.isTrue(matches(raw_password), "Password must be encoded");
+    }
+
+    public boolean matches(RawPassword rawPassword){
+        return new BCryptPasswordEncoder().matches(rawPassword.toString(), this.password);
     }
 
     public Long getId() {
@@ -55,9 +54,5 @@ public class User {
 
     public Calendar getCreated_at() {
         return created_at;
-    }
-
-    public void setCreated_at(Calendar created_at) {
-        this.created_at = created_at;
     }
 }
