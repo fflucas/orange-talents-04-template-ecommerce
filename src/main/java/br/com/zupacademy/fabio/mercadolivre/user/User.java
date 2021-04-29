@@ -1,6 +1,6 @@
 package br.com.zupacademy.fabio.mercadolivre.user;
 
-import br.com.zupacademy.fabio.mercadolivre.user.validation.RawPassword;
+import br.com.zupacademy.fabio.mercadolivre.user.validator.RawPassword;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.util.Assert;
