@@ -2,7 +2,9 @@ package br.com.zupacademy.fabio.mercadolivre.shared.validator;
 
 import br.com.zupacademy.fabio.mercadolivre.user.User;
 import br.com.zupacademy.fabio.mercadolivre.user.UserRepository;
-import br.com.zupacademy.fabio.mercadolivre.user.validation.RawPassword;
+import br.com.zupacademy.fabio.mercadolivre.user.validator.IsUniqueEmail;
+import br.com.zupacademy.fabio.mercadolivre.user.validator.IsUniqueEmailValidator;
+import br.com.zupacademy.fabio.mercadolivre.user.validator.RawPassword;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

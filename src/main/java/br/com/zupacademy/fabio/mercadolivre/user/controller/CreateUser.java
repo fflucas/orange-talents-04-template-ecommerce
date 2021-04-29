@@ -1,5 +1,8 @@
-package br.com.zupacademy.fabio.mercadolivre.user;
+package br.com.zupacademy.fabio.mercadolivre.user.controller;
 
+import br.com.zupacademy.fabio.mercadolivre.user.User;
+import br.com.zupacademy.fabio.mercadolivre.user.UserRepository;
+import br.com.zupacademy.fabio.mercadolivre.user.UserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,12 +14,12 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/v1/user")
-public class UserController {
+public class CreateUser {
 
     private UserRepository userRepository;
 
     @Autowired
-    public UserController(UserRepository userRepository) {
+    public CreateUser(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

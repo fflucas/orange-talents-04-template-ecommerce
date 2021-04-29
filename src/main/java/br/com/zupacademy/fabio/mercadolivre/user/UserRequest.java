@@ -1,7 +1,7 @@
 package br.com.zupacademy.fabio.mercadolivre.user;
 
-import br.com.zupacademy.fabio.mercadolivre.shared.validator.IsUniqueEmail;
-import br.com.zupacademy.fabio.mercadolivre.user.validation.RawPassword;
+import br.com.zupacademy.fabio.mercadolivre.user.validator.IsUniqueEmail;
+import br.com.zupacademy.fabio.mercadolivre.user.validator.RawPassword;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

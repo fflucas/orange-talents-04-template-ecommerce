@@ -1,4 +1,4 @@
-package br.com.zupacademy.fabio.mercadolivre.user.validation;
+package br.com.zupacademy.fabio.mercadolivre.user.validator;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.util.Assert;
