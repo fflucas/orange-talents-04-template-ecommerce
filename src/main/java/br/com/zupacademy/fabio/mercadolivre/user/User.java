@@ -2,14 +2,17 @@ package br.com.zupacademy.fabio.mercadolivre.user;
 
 import br.com.zupacademy.fabio.mercadolivre.user.validator.RawPassword;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.util.Calendar;
+import java.util.Collection;
 
 @Entity
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,12 +43,29 @@ public class User {
         return new BCryptPasswordEncoder().matches(rawPassword.toString(), this.password);
     }
 
-    public Long getId() {
-        return id;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public String getUsername() {
-        return username;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 
     public String getPassword() {
@@ -54,5 +74,13 @@ public class User {
 
     public Calendar getCreated_at() {
         return created_at;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }
