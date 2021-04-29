@@ -5,14 +5,12 @@ import javax.validation.Payload;
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = IsUniqueValidator.class)
+@Constraint(validatedBy = IsUniqueEmailValidator.class)
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface IsUnique {
+public @interface IsUniqueEmail {
     String message() default "Value field must be unique";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
-    String fieldName();
-    Class<?> domainClass();
 }
 
