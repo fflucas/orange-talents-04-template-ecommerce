@@ -1,4 +1,4 @@
-package br.com.zupacademy.fabio.mercadolivre.shared.validator;
+package br.com.zupacademy.fabio.mercadolivre.user.validator;
 
 import br.com.zupacademy.fabio.mercadolivre.user.User;
 import br.com.zupacademy.fabio.mercadolivre.user.UserRepository;
