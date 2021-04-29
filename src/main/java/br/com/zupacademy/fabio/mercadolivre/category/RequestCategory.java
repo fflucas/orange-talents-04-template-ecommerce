@@ -1,14 +1,16 @@
 package br.com.zupacademy.fabio.mercadolivre.category;
 
-import br.com.zupacademy.fabio.mercadolivre.category.validator.IsUniqueName;
-import br.com.zupacademy.fabio.mercadolivre.category.validator.IsValidCategory;
+import br.com.zupacademy.fabio.mercadolivre.shared.validator.IsUnique;
+import br.com.zupacademy.fabio.mercadolivre.shared.validator.IsValid;
+import org.springframework.util.Assert;
 
 import javax.validation.constraints.NotBlank;
+import java.util.Optional;
 
 public class RequestCategory {
-    @NotBlank @IsUniqueName
+    @NotBlank @IsUnique(domainClass = Category.class, fieldName = "name")
     private String name;
-    @IsValidCategory
+    @IsValid(domainClass = Category.class, fieldName = "id")
     private Long mother_category_id;
 
     @Deprecated
@@ -30,8 +32,9 @@ public class RequestCategory {
 
     public Category convertToCategory(CategoryRepository repository){
         if(mother_category_id != null){
-            Category mother_category = repository.findById(mother_category_id).get();
-            return new Category(name, mother_category);
+            Optional<Category> optionalCategory = repository.findById(mother_category_id);
+            Assert.isTrue(optionalCategory.isPresent(), "Mother category must be valid");
+            return new Category(name, optionalCategory.get());
         }
         return new Category(name);
     }
