@@ -1,6 +1,7 @@
 package br.com.zupacademy.fabio.mercadolivre.product;
 
 import br.com.zupacademy.fabio.mercadolivre.category.Category;
+import br.com.zupacademy.fabio.mercadolivre.shared.EmailSender;
 import br.com.zupacademy.fabio.mercadolivre.user.User;
 import io.jsonwebtoken.lang.Assert;
 import org.hibernate.annotations.CreationTimestamp;
@@ -36,7 +37,9 @@ public class Product {
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar created_at;
     @OneToMany(mappedBy = "product", cascade = CascadeType.MERGE)
-    private List<Review> review = new ArrayList<>();
+    private List<Review> reviews = new ArrayList<>();
+    @OneToMany(mappedBy = "product", cascade = CascadeType.MERGE)
+    private List<Question> questions = new ArrayList<>();
 
     @Deprecated
     public Product() {
@@ -103,6 +106,20 @@ public class Product {
     }
 
     public void newReview(Review review) {
-        this.review.add(review);
+        this.reviews.add(review);
+    }
+
+    public void newQuestion(Question question, EmailSender emailSender) {
+        int beforeAdd = questions.size();
+        this.questions.add(question);
+        int afterAdd = questions.size();
+        Assert.isTrue(afterAdd>beforeAdd, "Something went wrong and the question was not recorded on the product");
+        triggersEmailToSeller(question, emailSender);
+    }
+
+    private void triggersEmailToSeller(Question question, EmailSender emailSender) {
+        String productOwner = question.getProduct().getOwner().getUsername();
+        String productName = question.getProduct().getName();
+        emailSender.simpleMessage(productOwner, productName);
     }
 }
