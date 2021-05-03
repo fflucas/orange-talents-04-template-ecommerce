@@ -4,6 +4,7 @@ import org.springframework.util.Assert;
 
 import javax.validation.constraints.NotBlank;
 
+
 public class RequestFeature {
     @NotBlank
     private String name;

@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -32,6 +33,8 @@ public class Product {
     private Category category;
     @ManyToOne
     private User owner;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.MERGE)
+    private List<ProductPhoto> photos;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar created_at;
@@ -84,11 +87,19 @@ public class Product {
         return category;
     }
 
-    public String getOwner() {
-        return owner.getUsername();
+    public User getOwner() {
+        return owner;
     }
 
     public Calendar getCreated_at() {
         return created_at;
+    }
+
+    public List<ProductPhoto> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<ProductPhoto> photos) {
+        this.photos = photos;
     }
 }
