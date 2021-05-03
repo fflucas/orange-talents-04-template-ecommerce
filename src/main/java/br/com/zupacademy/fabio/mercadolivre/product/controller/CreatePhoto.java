@@ -47,7 +47,7 @@ public class CreatePhoto {
         }
 
         List<ProductPhoto> productPhotos = requestPhoto.convertToProductPhoto(storageFile, product);
-        product.setPhotos(productPhotos);
+        product.newProductPhotos(productPhotos);
         manager.merge(product);
         return ResponseEntity.ok(productPhotos);
     }
