@@ -7,10 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Calendar;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Entity
@@ -34,10 +31,12 @@ public class Product {
     @ManyToOne
     private User owner;
     @OneToMany(mappedBy = "product", cascade = CascadeType.MERGE)
-    private List<ProductPhoto> photos;
+    private List<ProductPhoto> photos = new ArrayList<>();
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar created_at;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.MERGE)
+    private List<Review> review = new ArrayList<>();
 
     @Deprecated
     public Product() {
@@ -99,7 +98,11 @@ public class Product {
         return photos;
     }
 
-    public void setPhotos(List<ProductPhoto> photos) {
-        this.photos = photos;
+    public void newProductPhotos(List<ProductPhoto> photos) {
+        this.photos.addAll(photos);
+    }
+
+    public void newReview(Review review) {
+        this.review.add(review);
     }
 }

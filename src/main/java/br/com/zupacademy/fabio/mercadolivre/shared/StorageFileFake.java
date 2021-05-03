@@ -3,7 +3,7 @@ package br.com.zupacademy.fabio.mercadolivre.shared;
 import io.jsonwebtoken.lang.Assert;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Service
+@Component
 @Profile("dev")
 public class StorageFileFake implements StorageFile{
     @Override
