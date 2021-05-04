@@ -4,7 +4,6 @@ import br.com.zupacademy.fabio.mercadolivre.product.Product;
 import br.com.zupacademy.fabio.mercadolivre.product.RequestProduct;
 import br.com.zupacademy.fabio.mercadolivre.user.User;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

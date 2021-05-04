@@ -38,8 +38,13 @@ public class CreateQuestion {
             return ResponseEntity.notFound().build();
         }
         Question question = requestQuestion.convertToQuestion(product, loggedUser);
-        product.newQuestion(question, emailSender);
+        product.newQuestion(question);
         entityManager.merge(product);
+
+        String productOwner = product.getOwner().getUsername();
+        String productName = product.getName();
+        emailSender.simpleMessage(productOwner, productName);
+
         return ResponseEntity.ok(question);
     }
 }

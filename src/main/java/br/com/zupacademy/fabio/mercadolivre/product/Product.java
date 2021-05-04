@@ -1,7 +1,6 @@
 package br.com.zupacademy.fabio.mercadolivre.product;
 
 import br.com.zupacademy.fabio.mercadolivre.category.Category;
-import br.com.zupacademy.fabio.mercadolivre.shared.EmailSender;
 import br.com.zupacademy.fabio.mercadolivre.user.User;
 import io.jsonwebtoken.lang.Assert;
 import org.hibernate.annotations.CreationTimestamp;
@@ -101,6 +100,14 @@ public class Product {
         return photos;
     }
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
     public void newProductPhotos(List<ProductPhoto> photos) {
         this.photos.addAll(photos);
     }
@@ -109,17 +116,10 @@ public class Product {
         this.reviews.add(review);
     }
 
-    public void newQuestion(Question question, EmailSender emailSender) {
+    public void newQuestion(Question question) {
         int beforeAdd = questions.size();
         this.questions.add(question);
         int afterAdd = questions.size();
         Assert.isTrue(afterAdd>beforeAdd, "Something went wrong and the question was not recorded on the product");
-        triggersEmailToSeller(question, emailSender);
-    }
-
-    private void triggersEmailToSeller(Question question, EmailSender emailSender) {
-        String productOwner = question.getProduct().getOwner().getUsername();
-        String productName = question.getProduct().getName();
-        emailSender.simpleMessage(productOwner, productName);
     }
 }

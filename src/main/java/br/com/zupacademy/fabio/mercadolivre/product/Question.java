@@ -4,7 +4,6 @@ import br.com.zupacademy.fabio.mercadolivre.user.User;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.util.Calendar;
 
 @Entity
@@ -38,10 +37,6 @@ public class Question {
 
     public String getTitle() {
         return title;
-    }
-
-    public Product getProduct() {
-        return product;
     }
 
     public Calendar getCreated_at() {
