@@ -3,10 +3,6 @@ package br.com.zupacademy.fabio.mercadolivre.product;
 import br.com.zupacademy.fabio.mercadolivre.user.User;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 @Entity
 public class Review {

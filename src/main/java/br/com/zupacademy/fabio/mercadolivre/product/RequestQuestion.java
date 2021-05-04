@@ -1,6 +1,5 @@
 package br.com.zupacademy.fabio.mercadolivre.product;
 
-import br.com.zupacademy.fabio.mercadolivre.shared.EmailSender;
 import br.com.zupacademy.fabio.mercadolivre.user.User;
 
 import javax.validation.constraints.NotBlank;
